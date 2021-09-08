@@ -1,0 +1,62 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.10'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'kr.co.datarse'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.security:spring-security-jwt'
+	implementation 'junit:junit:4.12'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	
+	// implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.5.2'
+	implementation 'io.jsonwebtoken:jjwt:0.2'
+	
+	
+	// JSON
+	implementation 'org.json:json:20210307'
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	
+	// DB 
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.3'
+	implementation 'org.mariadb.jdbc:mariadb-java-client:2.4.1'
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
+	
+	// encoding check
+	implementation 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
+	
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+	useJUnitPlatform()
+}
