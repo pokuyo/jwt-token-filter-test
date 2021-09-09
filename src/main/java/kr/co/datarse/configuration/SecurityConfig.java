@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests().antMatchers(
 				 "/authenticate"
 				,"/api/user/regist"
-				,"/api/user/siginin"
+				,"/api/user/signin"
 			 )
 			.permitAll()
 			// 다른 모든 요청은 인증처리

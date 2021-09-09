@@ -1,4 +1,4 @@
-package kr.co.datarse.User;
+package kr.co.datarse.user.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,8 +10,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SignVo {
-	String email;
+	String userid;
 	String password;
-	String name;
+	String username;
+	String jsessionid;
 	String hashkey;
 }

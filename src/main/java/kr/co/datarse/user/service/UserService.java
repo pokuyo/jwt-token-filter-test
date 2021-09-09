@@ -1,4 +1,4 @@
-package kr.co.datarse.User;
+package kr.co.datarse.user.service;
 
 import java.util.Optional;
 
@@ -6,36 +6,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import kr.co.datarse.exception.EmailDuplicateException;
+import kr.co.datarse.user.mapper.UserMapper;
+import kr.co.datarse.user.model.User;
 import kr.co.datarse.util.SHA512;
 
 @Service
 public class UserService {
 	
-	UserRepository repository;
 	PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
-		this.repository = repository;
+	public UserService(PasswordEncoder passwordEncoder) {
 		this.passwordEncoder = passwordEncoder;
 	}
 	
+	@Autowired
+	private UserMapper userMapper;
+	
 	public void save(User user) {
-		Optional<User> aleadyUser = repository.findByEmail(user.getEmail());
+		Optional<User> aleadyUser = userMapper.findByUserId(user);
+		
 		if(aleadyUser.isPresent()) {
-			//throw new EmailDuplicateException("email duplicated",ErrorCode.EMAIL_DUPLICATION);
-			System.out.println("UserService.save() Exception");
+			throw new EmailDuplicateException();
 		}
+		
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		// 일회성 hashkey 생성 (salt + user email)
-		String hashkey = SHA512.getSHA512(user.getEmail());
+		String hashkey = SHA512.getSHA512(user.getUserid());
 		user.setHashkey(hashkey);
 		
-		repository.save(user);
+		userMapper.registNewUser(user);
 	}
 	
-	public Optional<User> findUserByEmail(String email) {
-		Optional<User> aleadyUser = repository.findByEmail(email);
+	public Optional<User> findUserByUserId(String userid) {
+		Optional<User> aleadyUser = userMapper.findByUserId(userid);
 		return aleadyUser;
 	}
+	
 }

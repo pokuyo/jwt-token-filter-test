@@ -33,6 +33,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		
 		final String requestTokenHeader = request.getHeader("Authorization");
+		final String jSessionId = request.getRequestedSessionId();
 		
 		String username = null;
 		String jwtToken = null;
@@ -61,13 +62,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
 						new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 				
-				// log.info("usernamePasswordAuthenticationToken : "+usernamePasswordAuthenticationToken );
-				
 				// context에 인증 설정 후 현재 사용자가 인증되도록 지정 (spring security 설정이 성공적으로 넘어감)
 				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-				
-				// 검증성공후 header에 신규발행토큰 추가
-				response.setHeader("Authorization", jwtTokenUtil.generateToken(userDetails));
 			}
 		}
 		filterChain.doFilter(request, response);
