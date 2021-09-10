@@ -1,0 +1,15 @@
+#jasypt:
+#  encryptor:
+#    password: Datarse_PAmaster
+#    bean: jasyptStringEncryptor
+spring:
+  datasource:
+    # [localDB setting]
+#    url: jdbc:log4jdbc:mysql://localhost:3306/api_db?serverTimezone=Asia/Seoul&characterEncoding=utf8&allowMultiQueries=true&autoReconnect=true
+#    username: test03
+#    password: 1q2w3e4r5t
+    # [devDB setting]
+    url: jdbc:log4jdbc:mysql://172.30.1.100:3306/restapi?serverTimezone=Asia/Seoul&characterEncoding=utf8&allowMultiQueries=true&autoReconnect=true
+    username: restapi
+    password: restapi
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy

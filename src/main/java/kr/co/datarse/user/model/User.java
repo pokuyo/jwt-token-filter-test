@@ -1,16 +1,6 @@
 package kr.co.datarse.user.model;
 
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +11,7 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-@Entity(name = "user")
+//@Entity(name = "user")
 @NoArgsConstructor
 public class User {
 	
@@ -29,8 +19,8 @@ public class User {
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 //	private Long id;
 	
-	@Id
-	@Column(unique = true)
+//	@Id
+//	@Column(unique = true)
 	@NotEmpty
 	private String userid;
 	@NotEmpty

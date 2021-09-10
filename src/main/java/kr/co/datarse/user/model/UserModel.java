@@ -2,9 +2,6 @@ package kr.co.datarse.user.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
@@ -17,14 +14,14 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-@Entity(name = "cmm_user")
+//@Entity(name = "cmm_user")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class UserModel {
 
-	@Id
-	@Column(unique = true)
+//	@Id
+//	@Column(unique = true)
 	@NotEmpty
 	private Number	usr_no;
 	private String	usr_id;
