@@ -3,6 +3,7 @@ package kr.co.datarse.auth.config;
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import kr.co.datarse.auth.service.JwtUserDetailsService;
 import kr.co.datarse.auth.util.JwtTokenUtil;
+import kr.co.datarse.exception.EmailDuplicateException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -64,6 +66,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 				
 				// context에 인증 설정 후 현재 사용자가 인증되도록 지정 (spring security 설정이 성공적으로 넘어감)
 				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(jwtToken);
+				request.setAttribute("error", "qwfqfqwjpof");
+				dispatcher.forward(request, response);
 			}
 		}
 		filterChain.doFilter(request, response);

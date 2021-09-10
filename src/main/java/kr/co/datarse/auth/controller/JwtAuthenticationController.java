@@ -1,6 +1,7 @@
 package kr.co.datarse.auth.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -48,9 +49,13 @@ public class JwtAuthenticationController {
 //		final String token = jwtTokenUtil.generateToken(customUserDetails);
 		
 		ApiResponse response = new ApiResponse();
-		response.setData(token);
+		// response.setData(token);
 		
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		HttpHeaders header = new HttpHeaders();
+		header.set("Authorization", token);
+		
+//		return new ResponseEntity<>(response, HttpStatus.OK);
+		return new ResponseEntity<>(response, header, HttpStatus.OK);
 	}
 	
 	private void authenticate(String username, String password) {

@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.datarse.util.ConvertUtil;
 
-@RequestMapping("/sample")
+@RequestMapping("/api")
 @RestController
 public class SampleController {
 	
-	@RequestMapping("/test")
+	@RequestMapping("/sample/requestdata")
 	public JSONObject sampleMethod(@RequestBody Map<String, Object> postparams) {
 		JSONObject jsonObj = new JSONObject();
 		

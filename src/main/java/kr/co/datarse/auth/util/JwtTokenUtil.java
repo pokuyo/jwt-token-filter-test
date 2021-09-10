@@ -7,6 +7,7 @@ import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,8 @@ import kr.co.datarse.util.RSAUtil;
 public class JwtTokenUtil implements Serializable {
 	
 	private static final long serialVersionUID = -798416586417070603L;
-    private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+//    private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+    private static final long JWT_TOKEN_VALIDITY = 1 * 60;
 	
     @Value("${jwt.secret}")
     private String secret;
@@ -125,4 +127,18 @@ public class JwtTokenUtil implements Serializable {
     	final String username = getUsernameFromToken(token);
     	return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+    
+    public static void main(String[] args) {
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        long timeInMillis =System.currentTimeMillis();
+
+        Date timeInDate = new Date(timeInMillis); 
+        String timeInFormat = sdf.format(timeInDate);
+        System.out.println(timeInFormat);
+        
+        timeInMillis = timeInMillis + JWT_TOKEN_VALIDITY * 1000;
+        timeInDate = new Date(timeInMillis); 
+        timeInFormat = sdf.format(timeInDate);
+        System.out.println(timeInFormat);
+	}
 }
