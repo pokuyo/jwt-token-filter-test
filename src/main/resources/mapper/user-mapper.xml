@@ -2,13 +2,81 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="kr.co.datarse.user.mapper.UserMapper">
 	
-	<select id="findByUserId" resultType="kr.co.datarse.user.model.User">
-		SELECT *
-		  FROM USER
-		 WHERE userid = #{userid}
+	<select id="findByUserId" resultType="kr.co.datarse.user.model.UserModel">
+		SELECT usr_no           
+			  ,usr_id           
+			  ,usr_pw           
+			  ,usr_nm           
+			  ,pw_initl_yn      
+			  ,pw_initl_dt      
+			  ,pw_failure_count 
+			  ,cnt_frs          
+			  ,cnt_mdl          
+			  ,cnt_end          
+			  ,role_cd          
+			  ,gp_cd            
+			  ,register         
+			  ,rgsde            
+			  ,updusr           
+			  ,updde            
+			  ,lock_yn          
+			  ,approval_yn      
+			  ,usr_email        
+			  ,offm_telno       
+			  ,usr_rspofc  
+		  FROM CMM_USER
+		 WHERE usr_id = #{usr_id}
 	</select>
 	
 	<insert id="registNewUser">
+		INSERT INTO CMM_USER (
+			 usr_no           
+			,usr_id           
+			,usr_pw           
+			,usr_nm           
+			,pw_initl_yn      
+			,pw_initl_dt      
+			,pw_failure_count 
+			,cnt_frs          
+			,cnt_mdl          
+			,cnt_end          
+			,role_cd          
+			,gp_cd            
+			,register         
+			,rgsde            
+			,updusr           
+			,updde            
+			,lock_yn          
+			,approval_yn      
+			,usr_email        
+			,offm_telno       
+			,usr_rspofc       
+		) VALUES (
+			 #{usr_no}    
+			,#{usr_id}
+			,#{usr_pw}
+			,#{usr_nm}
+			,#{pw_initl_yn}
+			,#{pw_initl_dt}
+			,#{pw_failure_count}
+			,#{cnt_frs}
+			,#{cnt_mdl}
+			,#{cnt_end}
+			,#{role_cd}
+			,#{gp_cd}
+			,#{register}
+			,#{rgsde}
+			,#{updusr}
+			,#{updde}
+			,#{lock_yn}
+			,#{approval_yn}
+			,#{usr_email}
+			,#{offm_telno}
+			,#{usr_rspofc}
+		)
+	</insert>
+	
+	<insert id="registNewUser_back">
 		INSERT INTO USER (
 			 userid 
 			,username

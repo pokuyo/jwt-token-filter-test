@@ -4,8 +4,6 @@ package kr.co.datarse.exception;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.net.ssl.SSLEngineResult.Status;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,7 +13,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
-import net.minidev.json.JSONObject;
 
 @RestControllerAdvice
 @Slf4j
@@ -23,7 +20,7 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(EmailDuplicateException.class)
 	public String handleEmailDuplicateException(EmailDuplicateException ex) throws JsonProcessingException {
-		 log.error("handleEmailDuplicateException: ", ex.getErrorCode());
+		log.error("handleEmailDuplicateException: ", ex.getErrorCode());
 		ErrorResponse errorResponse = new ErrorResponse(ex.getErrorCode());
 		
 		Map<String, String> map = new HashMap<>();

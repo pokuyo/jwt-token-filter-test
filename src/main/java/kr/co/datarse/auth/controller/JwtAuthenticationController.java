@@ -19,6 +19,7 @@ import kr.co.datarse.auth.model.JwtRequest;
 import kr.co.datarse.auth.service.JwtUserDetailsService;
 import kr.co.datarse.auth.util.ApiResponse;
 import kr.co.datarse.auth.util.JwtTokenUtil;
+import kr.co.datarse.user.model.CustomUserDetails;
 
 @RestController
 @CrossOrigin
@@ -38,10 +39,13 @@ public class JwtAuthenticationController {
 	
 	@RequestMapping(value="/api/user/signin", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+		authenticate(authenticationRequest.getUsr_id(), authenticationRequest.getUsr_pw());
 		
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsr_id());
 		final String token = jwtTokenUtil.generateToken(userDetails);
+		// UserDetail Custom test
+//		final CustomUserDetails customUserDetails = (CustomUserDetails) userDetailsService.loadUserByUserid(authenticationRequest.getUsr_id());
+//		final String token = jwtTokenUtil.generateToken(customUserDetails);
 		
 		ApiResponse response = new ApiResponse();
 		response.setData(token);

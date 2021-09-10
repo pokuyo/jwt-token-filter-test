@@ -43,8 +43,7 @@ public class User {
 	private String jsessionid;
 
 	@Builder
-	public User(/* Long id, */String userid, String password, String username, String jsessionid, String hashkey) {
-//		this.id = id;
+	public User(String userid, String password, String username, String jsessionid, String hashkey) {
 		this.userid = userid;
 		this.password = password;
 		this.username = username;

@@ -38,3 +38,7 @@ logging:
             springframework:
                 web: DEBUG
                 security: DEBUG
+        com.zaxxer.hikari.pool.PoolBase: ERROR
+        com.zaxxer.hikari.pool.HikariPool: ERROR
+        com.zaxxer.hikari.HikariDataSource: ERROR
+
