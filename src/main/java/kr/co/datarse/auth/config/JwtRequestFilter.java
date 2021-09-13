@@ -34,8 +34,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
-		final String requestTokenHeader = request.getHeader("Authorization");
-		final String jSessionId = request.getRequestedSessionId();
+		String requestTokenHeader = request.getHeader("Authorization");
+		log.info("requestTokenHeader : " + requestTokenHeader);
+//		String jSessionId = request.getRequestedSessionId();
 		
 		String username = null;
 		String jwtToken = null;
