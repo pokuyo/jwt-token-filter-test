@@ -34,8 +34,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
+		// 유입토큰정보
 		String requestTokenHeader = request.getHeader("Authorization");
 		log.info("requestTokenHeader : " + requestTokenHeader);
+		
+		// client ip 획득
+		String clientIp = request.getHeader("X-Forwarded-For");
+		log.info("clientIp : " + clientIp);
 //		String jSessionId = request.getRequestedSessionId();
 		
 		String username = null;
