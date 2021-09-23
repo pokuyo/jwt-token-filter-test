@@ -47,4 +47,32 @@ public class SampleController {
 		return jsonObj;
 		
 	}
+	
+	@RequestMapping("/sample/dashboardsample")
+	public JSONObject dashboardsample() {
+		JSONObject jsonObj = new JSONObject();
+		
+		int totalCount	= 300;
+//		int requestPage	= postparams.get("page") != null ? (int) postparams.get("page") : 1 ;
+		int requestPage	= 1;
+		
+		ArrayList<Map<String, Object>> paramList = new ArrayList<Map<String, Object>>();
+		for(int i=0; i<10; i++) {
+			Map<String, Object> dataMap = new HashMap<>();
+			dataMap.put("projectno"		, requestPage+"at"+i);
+			dataMap.put("projectstep"	, requestPage+"bt"+i);
+			dataMap.put("projectname"	, requestPage+"ct"+i);
+			paramList.add(dataMap);
+		}
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("totalCount"	, totalCount);
+		paramMap.put("page"			, requestPage);
+		paramMap.put("data"			, paramList);
+		
+		jsonObj = ConvertUtil.setGrid(paramMap);
+		
+		return jsonObj;
+		
+	}
 }
