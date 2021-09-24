@@ -70,6 +70,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
 						new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 				
+				// header token 정보 설정
+				response.setHeader("Authorization", jwtToken);
+				
 				// context에 인증 설정 후 현재 사용자가 인증되도록 지정 (spring security 설정이 성공적으로 넘어감)
 				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 			} else {

@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import kr.co.datarse.common.util.SHA512;
 import kr.co.datarse.exception.EmailDuplicateException;
 import kr.co.datarse.user.mapper.UserMapper;
 import kr.co.datarse.user.model.User;
 import kr.co.datarse.user.model.UserModel;
-import kr.co.datarse.util.SHA512;
 
 @Service
 public class UserService {

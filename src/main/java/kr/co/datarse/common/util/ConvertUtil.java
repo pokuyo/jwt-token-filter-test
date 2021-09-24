@@ -1,4 +1,4 @@
-package kr.co.datarse.util;
+package kr.co.datarse.common.util;
 
 import java.util.Map;
 

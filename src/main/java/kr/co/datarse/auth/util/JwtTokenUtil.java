@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import kr.co.datarse.util.RSAUtil;
+import kr.co.datarse.common.util.RSAUtil;
 
 //@Component
 @Service

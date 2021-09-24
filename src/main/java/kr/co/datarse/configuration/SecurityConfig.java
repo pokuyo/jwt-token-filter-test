@@ -63,7 +63,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				 "/authenticate"
 				,"/api/user/regist"
 				,"/api/user/signin"
-				,"/api/sample/dashboardsample"
 			 )
 			.permitAll()
 			// 다른 모든 요청은 인증처리
