@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.datarse.common.util.ConvertUtil;
+import kr.co.datarse.user.model.UserModel;
 
 @RequestMapping("/api")
 @RestController
@@ -25,18 +27,21 @@ public class SampleController {
 		//로그인 정보 확인방법 1
 		if(authentication != null) {
 			
-			System.out.println( authentication.getName() );
+			Object pri = authentication.getPrincipal();
+			
+			System.out.println( ((UserModel)pri).getUsr_nm() );
 			
 		}
 		//로그인 정보 확인방법 2
 		if(principal != null) {
-			
-			System.out.println( principal.getName() );
-			
+			Object pp = ((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+			System.out.println( ((UserModel)pp).getUsr_nm() );
 		}
 		
 		//로그인 정보 확인방법 3
-		System.out.println( SecurityContextHolder.getContext().getAuthentication().getName() );
+		Authentication  auth = SecurityContextHolder.getContext().getAuthentication();
+		Object authPri = auth.getPrincipal();
+		System.out.println( ((UserModel)authPri).getUsr_nm() );
 		
 		JSONObject jsonObj = new JSONObject();
 		
