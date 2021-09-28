@@ -1,10 +1,13 @@
 package kr.co.datarse.sample.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +18,26 @@ import kr.co.datarse.common.util.ConvertUtil;
 @RestController
 public class SampleController {
 	
+
 	@RequestMapping("/sample/requestdata")
-	public JSONObject sampleMethod(@RequestBody Map<String, Object> postparams) {
+	public JSONObject sampleMethod(@RequestBody Map<String, Object> postparams , Authentication authentication , Principal principal) {
+		
+		//로그인 정보 확인방법 1
+		if(authentication != null) {
+			
+			System.out.println( authentication.getName() );
+			
+		}
+		//로그인 정보 확인방법 2
+		if(principal != null) {
+			
+			System.out.println( principal.getName() );
+			
+		}
+		
+		//로그인 정보 확인방법 3
+		System.out.println( SecurityContextHolder.getContext().getAuthentication().getName() );
+		
 		JSONObject jsonObj = new JSONObject();
 		
 		int totalCount	= 300;
