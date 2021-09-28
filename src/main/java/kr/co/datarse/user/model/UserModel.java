@@ -1,8 +1,12 @@
 package kr.co.datarse.user.model;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +22,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserModel {
+public class UserModel implements UserDetails{
 
 //	@Id
 //	@Column(unique = true)
@@ -44,5 +48,44 @@ public class UserModel {
 	private String	usr_email;
 	private String	offm_telno; 
 	private String	usr_rspofc;
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return usr_pw;
+	}
+	
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return usr_id;
+	}
+	
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 	
 }
