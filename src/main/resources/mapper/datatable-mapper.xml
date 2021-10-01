@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.datarse.sample.mapper.DataTableMapper">
+	
+	<select id="retrieveRiskList" resultType="Map">
+		SELECT   /*  admin-Mapper.xml | selectRiskList */
+			 R.RISK_CD
+			,R.RISK_CD AS ORG_RISK_CD
+			,R.UPPER_RISK_CD
+			,R.RISK_NM
+			,R.RISK_RELIMP
+			,R.RISK_PNT
+			,R.META_1
+			,R.META_2
+			,R.META_3
+			,R.META_4
+			,R.META_5
+			,R.USE_YN
+			,R.REGISTER
+			,R.RGSDE
+			,R.UPDUSR
+			,R.UPDDE
+		FROM
+			 RISK_MEASURE R
+		ORDER BY
+			 R.UPPER_RISK_CD
+	</select>
+	
+</mapper>
