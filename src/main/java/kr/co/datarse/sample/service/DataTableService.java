@@ -14,8 +14,12 @@ public class DataTableService {
 	@Autowired
 	private DataTableMapper dataTableMapper;
 	
-	public List<Map<String, Object>> retrieveRiskList() {
-		return dataTableMapper.retrieveRiskList();
+	public List<Map<String, Object>> retrieveRiskList(Map<String, Object> params) {
+		return dataTableMapper.retrieveRiskList(params);
+	}
+
+	public int retrieveRiskListCount() {
+		return dataTableMapper.retrieveRiskListCount();
 	}
 
 }

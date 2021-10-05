@@ -24,6 +24,16 @@
 			 RISK_MEASURE R
 		ORDER BY
 			 R.UPPER_RISK_CD
+		LIMIT #{startIdx}, #{endIdx}
+	</select>
+	
+	<select id="retrieveRiskListCount" resultType="int">
+		SELECT   /*  admin-Mapper.xml | retrieveRiskListCount */
+			 COUNT(R.RISK_CD) AS COUNT
+		FROM
+			 RISK_MEASURE R
+		ORDER BY
+			 R.UPPER_RISK_CD
 	</select>
 	
 </mapper>

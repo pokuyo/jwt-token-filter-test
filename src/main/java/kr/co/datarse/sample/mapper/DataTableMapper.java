@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DataTableMapper {
 
-	List<Map<String, Object>> retrieveRiskList();
+	List<Map<String, Object>> retrieveRiskList(Map<String, Object> params);
+
+	int retrieveRiskListCount();
 
 }
